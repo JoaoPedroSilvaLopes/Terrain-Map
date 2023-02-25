@@ -1,20 +1,10 @@
-import styled from 'styled-components';
-
 /* eslint-disable-next-line */
 export interface ModulesRenderProceduralRenderProps {}
 
-const StyledModulesRenderProceduralRender = styled.div`
-  color: pink;
-`;
-
-export function ModulesRenderProceduralRender(
+const ModulesRenderProceduralRender = (
   props: ModulesRenderProceduralRenderProps
-) {
-  return (
-    <StyledModulesRenderProceduralRender>
-      <h1>Welcome to ModulesRenderProceduralRender!</h1>
-    </StyledModulesRenderProceduralRender>
-  );
-}
+) => {
+  return <h1>Welcome to ModulesRenderProceduralRender!</h1>;
+};
 
 export default ModulesRenderProceduralRender;

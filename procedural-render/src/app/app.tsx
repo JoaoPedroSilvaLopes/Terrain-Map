@@ -1,17 +1,7 @@
-import styled from 'styled-components';
-
-import NxWelcome from './nx-welcome';
-
-const StyledApp = styled.div`
-  // Your style here
-`;
+import ModulesRenderProceduralRender from 'modules/render/procedural-render/src/lib/modules-render-procedural-render';
 
 export function App() {
-  return (
-    <StyledApp>
-      <NxWelcome title="procedural-render" />
-    </StyledApp>
-  );
+  return <ModulesRenderProceduralRender />;
 }
 
 export default App;

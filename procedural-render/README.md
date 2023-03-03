@@ -1,26 +1,28 @@
-# Tutorial: Standalone React Application
+## :pencil2: Projetos Iniciais Web
 
-[![standalone application](https://img.shields.io/static/v1?label=Nx%20setup&message=standalone%20app&color=blue)](https://nx.dev/concepts/integrated-vs-package-based#standalone-applications)
+## :file_folder: Sobre o projeto
 
-Source code for the React standalone application tutorial on the Nx docs:
+<p align="justify">
+  Esse repositório tem como finalidade desenvolver o projeto da cadeira de introdução à computação gráfica do curso de ciência da computação.
+</p>
+<p align="justify">
+  O projeto se baseia na criação de uma aplicação web que gera terrenos de forma procedural, de forma que possibilite o usuário escolher o tipo de geração inicialmente em 3 biomas (floresta, deserto e montanha), e permitindo o usuário escolher o tamanho do terreno.
+</p>
 
-- Tutorial: https://nx.dev/getting-started/react-standalone-tutorial
-- Video: https://youtu.be/dqCZteGFP4k
+## :desktop_computer: Tecnologias
 
-## What's inside?
+As tecnologias utilizadas em todos os projetos foram
 
-This example contains a single Vite-based React application that has been generated with the `react-standlone` preset. It contains a single root-level application and two libraries, `cart` and `ui` that are imported into the app.
+### :gear: Arquitetura
+- <a href="https://nx.dev/recipes/nx-console">NX Console</a>
 
-Follow through the tutorial linked above for more details.
+### :keyboard: Desenvolvimento
+- <a href="https://www.typescriptlang.org">TypeScript</a>
+- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>
+- <a href="https://threejs.org">ThreeJS</a>
 
-## How to run it
-
-Install all dependencies using `npm install`. You can then run commands Like
-
-- `npx nx build` to build the React application
-- `npx nx serve` to serve the app
-- you can use `npx nx graph` to visualize the structure
-
-## Learn more
-
-- [Video: Standalone Applications with Nx](https://youtu.be/qEaVzh-oBBc)
+### :art: Estilização
+- <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a>
+- <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a>
+- <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap 5</a>
+- <a href="https://styled-components.com">Styled Components</a>

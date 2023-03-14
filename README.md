@@ -26,3 +26,6 @@ As tecnologias utilizadas em todos os projetos foram
 - <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a>
 - <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap 5</a>
 - <a href="https://styled-components.com">Styled Components</a>
+
+### :framed_picture: Design das telas
+- <a href="https://www.figma.com/file/TknTfh7qs9neG7AbgT4seG/Procedural-Render?node-id=0%3A1&t=ezZdxKeLdofJ4jm1-1" />Figma do Projeto</a>

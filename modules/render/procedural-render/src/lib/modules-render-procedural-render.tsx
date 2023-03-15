@@ -1,10 +1,13 @@
-/* eslint-disable-next-line */
-export interface ModulesRenderProceduralRenderProps {}
+import * as S from './modules-render-procedural-render.styles';
 
-const ModulesRenderProceduralRender = (
-  props: ModulesRenderProceduralRenderProps
-) => {
-  return <h1>Welcome to ModulesRenderProceduralRender!</h1>;
+const ModulesRenderProceduralRender: React.FC = () => {
+  return (
+    <S.Wrapper>
+      <S.Menu>
+        <S.Title>Procedural Render</S.Title>
+      </S.Menu>
+    </S.Wrapper>
+  );
 };
 
 export default ModulesRenderProceduralRender;

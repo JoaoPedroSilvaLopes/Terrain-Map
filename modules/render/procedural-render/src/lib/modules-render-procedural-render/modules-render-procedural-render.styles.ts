@@ -1,9 +1,9 @@
+import { theme } from '@procedural-render/shared';
 import styled from 'styled-components';
-import { theme } from './theme';
 
 export const Wrapper = styled.div`
-  margin: 0
-  padding: 0
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 
   font-family: 'Poppins', sans-serif;
@@ -17,6 +17,8 @@ export const Menu = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background-color: #333;
 `;
 
 export const Title = styled.h1`

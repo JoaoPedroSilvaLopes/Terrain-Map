@@ -1,6 +1,8 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 
+import { theme } from '@procedural-render/shared';
+import { ThemeProvider } from 'styled-components';
 import App from './app/app';
 
 const root = ReactDOM.createRoot(
@@ -8,6 +10,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </StrictMode>
 );

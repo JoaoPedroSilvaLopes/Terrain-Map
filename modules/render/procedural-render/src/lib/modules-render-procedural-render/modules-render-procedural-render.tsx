@@ -1,12 +1,17 @@
+import { Input } from '../components';
 import * as S from './modules-render-procedural-render.styles';
 
 const ModulesRenderProceduralRender: React.FC = () => {
   return (
-    <S.Wrapper>
-      <S.Menu>
-        <S.Title>Procedural Render</S.Title>
-      </S.Menu>
-    </S.Wrapper>
+    <S.PageWrapper>
+      <S.MapWrapper></S.MapWrapper>
+      <S.MenuWrapper>
+        <S.FormContainer>
+          <S.MenuTitle>Procedural Render</S.MenuTitle>
+          <Input />
+        </S.FormContainer>
+      </S.MenuWrapper>
+    </S.PageWrapper>
   );
 };
 

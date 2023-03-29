@@ -7,7 +7,9 @@ type InputProps = React.DetailedHTMLProps<
 >;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(({ ...rest }, ref) => {
-  return <S.InputWrapper {...rest} ref={ref}></S.InputWrapper>;
+  return (
+    <S.InputWrapper {...rest} ref={ref} placeholder="Insira uma localização" />
+  );
 });
 
 export default Input;

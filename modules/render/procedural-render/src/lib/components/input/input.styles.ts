@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 
+import searchIcon from './search-icon.svg';
+
 export const InputWrapper = styled.input`
-  min-height: 2.25rem;
-  background: ${(props) => props.theme.colors.primary};
-  border-radius: 0.3125rem;
-
-  color: ${(props) => props.theme.colors.textSecondary};
-
-  font-size: 0.75rem;
-
   &::placeholder {
-    font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
     font-size: 0.75rem;
     line-height: 1.125rem;
     color: ${(props) => props.theme.colors.textSecondary};
+    padding-left: 1.5rem;
+
+    background-image: url(${searchIcon});
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 1rem;
+  }
+
+  &:focus-visible {
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
   }
 `;

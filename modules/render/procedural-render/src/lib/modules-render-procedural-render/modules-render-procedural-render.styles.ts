@@ -9,6 +9,8 @@ export const PageWrapper = styled.div`
 export const MapWrapper = styled.div`
   min-width: 75%;
   background: #3333;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 `;
 
 export const MenuWrapper = styled.div`
@@ -17,7 +19,6 @@ export const MenuWrapper = styled.div`
 
   display: flex;
   flex-direction: row;
-  gap: 0.9375rem;
 `;
 
 export const FormContainer = styled.div`
@@ -26,14 +27,15 @@ export const FormContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-
+  gap: 0.9375rem;
   width: 100%;
 `;
 
-export const MenuTitle = styled.div`
+export const MenuTitle = styled.h1`
+  margin: 0;
   color: ${(props) => props.theme.colors.textPrimary};
   text-align: center;
-  font-size: 1.9rem;
+  font-size: 1.5625rem;
   font-weight: 700;
   line-height: 2.375rem;
 `;

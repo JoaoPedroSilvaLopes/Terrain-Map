@@ -1,1 +1,1 @@
-export * from './lib/modules-render-procedural-render';
+export * from './lib';

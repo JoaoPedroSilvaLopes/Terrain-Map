@@ -1,7 +1,13 @@
-import ModulesRenderProceduralRender from 'modules/render/procedural-render/src/lib/modules-render-procedural-render';
+import { ModulesRenderProceduralRender } from '@procedural-render/modules/render/procedural-render';
+import { GlobalStyle } from '@procedural-render/shared';
 
 export function App() {
-  return <ModulesRenderProceduralRender />;
+  return (
+    <>
+      <GlobalStyle />
+      <ModulesRenderProceduralRender />
+    </>
+  );
 }
 
 export default App;

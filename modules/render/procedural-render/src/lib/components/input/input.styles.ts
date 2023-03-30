@@ -16,10 +16,4 @@ export const InputWrapper = styled.input`
     background-repeat: no-repeat;
     background-size: 1rem;
   }
-
-  &:focus-visible {
-    filter: brightness(1.2);
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
 `;

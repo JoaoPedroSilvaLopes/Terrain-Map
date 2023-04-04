@@ -1,4 +1,4 @@
-## :pencil2: Procedural Render
+## :pencil2: TerrainMap
 
 ## :file_folder: Sobre o projeto
 

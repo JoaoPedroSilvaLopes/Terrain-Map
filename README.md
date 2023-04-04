@@ -20,6 +20,7 @@ As tecnologias utilizadas em todos os projetos foram
 - <a href="https://www.typescriptlang.org">TypeScript</a>
 - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>
 - <a href="https://threejs.org">ThreeJS</a>
+- <a href="https://leafletjs.com">Leaflet</a>
 
 ### :art: Estilização
 - <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a>

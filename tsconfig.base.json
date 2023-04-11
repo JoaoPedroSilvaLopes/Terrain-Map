@@ -15,10 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@procedural-render/assets": ["shared/assets/src/index.ts"],
+      "@procedural-render/core": ["shared/core/src/index.ts"],
+      "@procedural-render/domain-types": ["shared/domain-types/src/index.ts"],
+      "@procedural-render/meshes-components": [
+        "shared/meshes-components/src/index.ts"
+      ],
+      "@procedural-render/components": [
+        "shared/components/src/index.ts"
+      ],
+      "@procedural-render/styles": ["shared/styles/src/index.ts"],
       "@procedural-render/modules/render/procedural-render": [
         "modules/render/procedural-render/src/index.ts"
       ],
-      "@procedural-render/shared": ["shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

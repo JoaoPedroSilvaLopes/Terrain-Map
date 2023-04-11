@@ -1,6 +1,12 @@
 import { Scene, Vector2 } from 'three';
 import { Biome, BiomeName, GenericMesh } from '@procedural-render/domain-types';
-import { HexagonMesh } from '@procedural-render/meshes-components';
+import { HexagonMesh } from '../base-meshes';
+
+type Props = {
+  //biome: Biome,
+  scene: Scene;
+} & GenericMesh;
+
 
 export const getBiome = (biomeName: BiomeName) => {
   switch (biomeName) {
@@ -51,15 +57,10 @@ export const spacingMeshCube = (tileX: number, tileY: number) => {
   return new Vector2(tileX, tileY);
 };
 
-type Props = {
-  //biome: Biome,
-  scene: Scene
-} & GenericMesh
-
-export const generateTerrain = ({height, position, scene, color}: Props) => {
+export const generateTerrain = ({ height, position, scene, color }: Props) => {
   // const tree = Tree(height, position);
   // const stone = Stone(height, position);
   // const random = Math.random();
 
-  scene.add(HexagonMesh({height, position, color}));
+  scene.add(HexagonMesh({ height, position, color }));
 };

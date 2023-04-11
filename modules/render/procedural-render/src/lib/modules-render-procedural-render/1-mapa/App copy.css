@@ -1,9 +1,0 @@
-.leaflet-container {
-  width: 75vw;
-  height: 100vh;
-}
-
-.leaflet-tile-pane {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-}

@@ -2,12 +2,17 @@ import { Form as BsForm } from 'react-bootstrap';
 import { Button, Input, Range } from '@procedural-render/components';
 import * as S from './form.styles';
 
-const Form: React.FC = () => {
+type Props = {
+  onClick: () => void
+  onSubmit?: () => void
+}
+
+const Form: React.FC<Props> = ({ onSubmit, onClick }) => {
   return (
     <S.FormContainer>
       <S.MenuTitle>Procedural Render</S.MenuTitle>
       <Input />
-      <Button>Gerar Terraform Hexagonal</Button>
+      <Button onClick={() => onClick()}>Gerar Terraform Hexagonal</Button>
       <div className="mt-3">
         <S.MenuSubTitile>Nível de detalhe</S.MenuSubTitile>
         <Range />

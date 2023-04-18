@@ -3,18 +3,19 @@ import { Button, Input, Range } from '@procedural-render/components';
 import * as S from './form.styles';
 
 type Props = {
-  onClick: () => void
-  onSubmit?: () => void
-}
+  onClick: () => void;
+  onSubmit?: () => void;
+  toggleTheme: () => void;
+};
 
-const Form: React.FC<Props> = ({ onSubmit, onClick }) => {
+const Form: React.FC<Props> = ({ onSubmit, onClick, toggleTheme }) => {
   return (
     <S.FormContainer>
       <S.MenuTitle>Procedural Render</S.MenuTitle>
       <Input />
       <Button onClick={() => onClick()}>Gerar Terraform Hexagonal</Button>
       <div className="mt-3">
-        <S.MenuSubTitile>Nível de detalhe</S.MenuSubTitile>
+        <S.MenuSubTitle>Nível de detalhe</S.MenuSubTitle>
         <Range />
       </div>
       <S.SwitchContainer>
@@ -25,6 +26,8 @@ const Form: React.FC<Props> = ({ onSubmit, onClick }) => {
         <span>Iluminação</span>
         <BsForm.Check type="switch" />
       </S.SwitchContainer>
+
+      <button onClick={toggleTheme}>Mudar Tema</button>
     </S.FormContainer>
   );
 };

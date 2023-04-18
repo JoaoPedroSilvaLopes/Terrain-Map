@@ -1,55 +1,53 @@
 import styled from 'styled-components';
 
 export const FormContainer = styled.div`
-  padding-inline: 1.875rem;
-  margin-block: 1.25rem;
-
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.9375rem;
+  gap: 1rem;
   width: 100%;
 
   button,
   input:not([type='range']):not([type='checkbox']) {
-    min-height: 2.25rem;
     background: ${(props) => props.theme.colors.primary};
-    border-radius: 0.3125rem;
-
     color: ${(props) => props.theme.colors.textSecondary};
-
-    font-size: 0.75rem;
-
+    font-size: 1rem;
+    padding: 1rem;
     outline: none;
     border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
 
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 0.75rem;
-
-    padding-inline: 1rem;
+    ::placeholder {
+      font-size: 1rem;
+    }
 
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
       rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   }
 
-  /* input[type='range'] {
+  input[type='range'] {
     background: none;
     box-shadow: none;
-  } */
+  }
 `;
 
 export const MenuTitle = styled.h1`
-  font-size: 1.5625rem;
-  font-weight: 700;
-  line-height: 2.375rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 2.3rem;
 `;
 
-export const MenuSubTitile = styled.h2`
-  font-size: 1.2rem;
+export const MenuSubTitle = styled.h2`
+  text-align: start;
+  font-size: 1.25rem;
 `;
 
 export const SwitchContainer = styled.div`
   display: flex;
   justify-content: space-between;
+
+  span {
+    color: ${(props) => props.theme.colors.textPrimary};
+  }
 `;

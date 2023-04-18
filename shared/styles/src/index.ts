@@ -1,2 +1,2 @@
-export * from './global-style';
-export * from './theme';
+export * from './global';
+export * from './themes/index';

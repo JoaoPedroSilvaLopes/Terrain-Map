@@ -1,2 +1,2 @@
-export * from './render'
-export * from './shaders'
+export * from './render';
+export * from './shaders';

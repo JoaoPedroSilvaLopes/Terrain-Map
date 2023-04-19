@@ -4,10 +4,10 @@ import { Canvas, Form, Map } from './components';
 import * as S from './modules-render-procedural-render.styles';
 
 type Props = {
-  toggleTheme: () => void;
-};
+  themeToggler: () => void
+}
 
-const ModulesRenderProceduralRender: React.FC<Props> = ({ toggleTheme }) => {
+const ModulesRenderProceduralRender: React.FC<Props> = ({ themeToggler }) => {
   const [generate, setGenerate] = useState<boolean>(false);
   const [area, setArea] = useState<number>(5);
 
@@ -20,7 +20,7 @@ const ModulesRenderProceduralRender: React.FC<Props> = ({ toggleTheme }) => {
     <S.PageWrapper>
       <S.MapWrapper>{generate ? <Canvas area={area} /> : <Map />}</S.MapWrapper>
       <S.MenuWrapper>
-        <Form onClick={onClick} toggleTheme={toggleTheme} />
+        <Form onClick={onClick} themeToggler={themeToggler} />
       </S.MenuWrapper>
     </S.PageWrapper>
   );

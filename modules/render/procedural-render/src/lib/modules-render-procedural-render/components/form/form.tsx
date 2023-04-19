@@ -5,10 +5,10 @@ import * as S from './form.styles';
 type Props = {
   onClick: () => void;
   onSubmit?: () => void;
-  toggleTheme: () => void;
+  themeToggler: () => void
 };
 
-const Form: React.FC<Props> = ({ onSubmit, onClick, toggleTheme }) => {
+const Form: React.FC<Props> = ({ onSubmit, onClick, themeToggler }) => {
   return (
     <S.FormContainer>
       <S.MenuTitle>Procedural Render</S.MenuTitle>
@@ -27,7 +27,7 @@ const Form: React.FC<Props> = ({ onSubmit, onClick, toggleTheme }) => {
         <BsForm.Check type="switch" />
       </S.SwitchContainer>
 
-      <button onClick={toggleTheme}>Mudar Tema</button>
+      <button onClick={themeToggler}>Mudar Tema</button>
     </S.FormContainer>
   );
 };

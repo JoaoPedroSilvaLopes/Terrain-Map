@@ -1,20 +1,15 @@
+import { ThemeContext, useThemeMode } from '@procedural-render/core';
 import { ModulesRenderProceduralRender } from '@procedural-render/modules/render/procedural-render';
-import { GlobalStyle, dark, light } from '@procedural-render/styles';
-import { useState } from 'react';
-import { DefaultTheme, ThemeProvider } from 'styled-components';
+import { GlobalStyle } from '@procedural-render/styles';
 
 export function App() {
-  const [theme, setTheme] = useState<DefaultTheme>(light);
-
-  const toggleTheme = () => {
-    setTheme(theme.title === 'light' ? dark : light);
-  };
+  const { themeToggler } = useThemeMode()
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeContext>
       <GlobalStyle />
-      <ModulesRenderProceduralRender toggleTheme={toggleTheme} />
-    </ThemeProvider>
+      <ModulesRenderProceduralRender themeToggler={themeToggler} />
+    </ThemeContext>
   );
 }
 

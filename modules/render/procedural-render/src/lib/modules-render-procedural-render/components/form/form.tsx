@@ -5,7 +5,7 @@ import * as S from './form.styles';
 type Props = {
   onClick: () => void;
   onSubmit?: () => void;
-  themeToggler: () => void
+  themeToggler: () => void;
 };
 
 const Form: React.FC<Props> = ({ onSubmit, onClick, themeToggler }) => {
@@ -27,7 +27,10 @@ const Form: React.FC<Props> = ({ onSubmit, onClick, themeToggler }) => {
         <BsForm.Check type="switch" />
       </S.SwitchContainer>
 
-      <button onClick={themeToggler}>Mudar Tema</button>
+      <label id="switch" className="switch">
+        <input type="checkbox" onClick={themeToggler} id="slider" />
+        <span className="slider round"></span>
+      </label>
     </S.FormContainer>
   );
 };

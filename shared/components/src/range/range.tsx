@@ -7,7 +7,7 @@ type Props = FormRangeProps & {
 };
 
 const Range = forwardRef<HTMLInputElement, Props>(({ ...props }, ref) => {
-  return <S.Range {...props} ref={ref} />;
+  return <S.Range min={0} max={100} {...props} ref={ref} />;
 });
 
 export default Range;

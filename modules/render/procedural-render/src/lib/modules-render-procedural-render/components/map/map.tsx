@@ -11,8 +11,8 @@ const Map: React.FC = () => {
 
   return (
     <MapContainer center={center} zoom={10} scrollWheelZoom={true} maxZoom={20}>
-      <SateliteTileLayer opacity={0} />
-      <ColorTileLayer opacity={1} />
+      <SateliteTileLayer opacity={1} />
+      <ColorTileLayer opacity={0} />
       <GrayScaleTileLayer opacity={0} />
     </MapContainer>
   );

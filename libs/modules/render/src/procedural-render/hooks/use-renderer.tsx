@@ -1,4 +1,3 @@
-export * from './';
 import { useState } from 'react';
 import {
   AmbientLight,

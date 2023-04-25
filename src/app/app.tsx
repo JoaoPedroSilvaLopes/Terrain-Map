@@ -6,11 +6,9 @@ export const App = () => {
   const { themeToggler } = useThemeMode()
 
   return (
-    <>
-      <ThemeContext>
-        <GlobalStyle />
-        <ProceduralRender themeToggler={themeToggler} />
-      </ThemeContext>
-    </>
+    <ThemeContext>
+      <GlobalStyle />
+      <ProceduralRender themeToggler={themeToggler} />
+    </ThemeContext>
   )
 }

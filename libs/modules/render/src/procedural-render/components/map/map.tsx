@@ -1,20 +1,34 @@
-import { MapContainer } from 'react-leaflet';
-import {
-  ColorTileLayer,
-  GrayScaleTileLayer,
-  SateliteTileLayer,
-} from '@terrain-map/shared/components';
-import * as L from 'leaflet';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
-const Map: React.FC = () => {
-  const center = [-3.871284, -38.613565] as L.LatLngExpression;
+type Props = {
+  coordenadas: google.maps.LatLngLiteral
+}
 
-  return (
-    <MapContainer center={center} zoom={10} scrollWheelZoom={true} maxZoom={20}>
-      <SateliteTileLayer opacity={1} />
-      <ColorTileLayer opacity={0} />
-      <GrayScaleTileLayer opacity={0} />
-    </MapContainer>
+const Map: React.FC<Props> = ({coordenadas}) => {
+  const containerStyle = {
+    width: '100%',
+    height: '100%',
+  };
+
+  const options: google.maps.MapOptions = {
+    mapTypeId: 'satellite',
+    disableDefaultUI: true,
+    zoom: 15,
+    center: coordenadas,
+  }
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyCebNl8fDnbvcZivhxSMpx_DmI2Ldkjo6E',
+  });
+
+  return isLoaded ? (
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      options={options}
+    />
+  ) : (
+    <></>
   );
 };
 

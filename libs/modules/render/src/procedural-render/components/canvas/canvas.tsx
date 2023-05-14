@@ -30,6 +30,8 @@ const Canvas: React.FC<Props> = ({ area }) => {
     }
   }, [canvas]);
 
+  console.log(heightMap)
+
   useEffect(() => {
     if (renderer) {
       renderer.clear();

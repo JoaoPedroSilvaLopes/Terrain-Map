@@ -24,7 +24,7 @@ export const useRendered = () => {
   const height = window.innerHeight;
 
   // ESTRUTURAS
-  const heightMap = TerrainMapUtils.getPixels(20);
+  const heightMap = TerrainMapUtils.getPixels(10);
   const baseTable = BaseTable(area);
   const cloud = Cloud(area / 4, area);
   const water = Water(biome.waterHeight, biome.isWater, area);
@@ -44,8 +44,6 @@ export const useRendered = () => {
     baseTable
   );
   const mainCamera = MainCamera(width, height);
-
-  const teste = false
 
   return {
     scene,

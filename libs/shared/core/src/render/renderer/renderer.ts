@@ -9,19 +9,24 @@ import {
 const RendererWrapper = (
   scene: Scene,
   mainCamera: PerspectiveCamera,
-  canvas: HTMLCanvasElement
+  shadow: boolean
 ) => {
   const renderer = new WebGL1Renderer({
-    canvas: canvas,
+    canvas: document.getElementById('threejs') as HTMLCanvasElement,
     antialias: true,
+    logarithmicDepthBuffer: true,
+    preserveDrawingBuffer: true,
+    precision: 'highp',
   });
+
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.render(scene, mainCamera);
-
   renderer.toneMapping = ACESFilmicToneMapping;
-  renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFSoftShadowMap;
-  //renderer.autoClear;
+  renderer.shadowMap.autoUpdate = true;
+  renderer.shadowMap.needsUpdate = true;
+
+  renderer.shadowMap.enabled = shadow;
 
   return renderer;
 };

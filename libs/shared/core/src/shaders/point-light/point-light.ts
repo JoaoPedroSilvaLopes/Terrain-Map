@@ -1,4 +1,6 @@
 import { Color, PointLight } from 'three';
+import { useLight } from '../../hooks';
+import { useEffect } from 'react';
 
 const PointLightWrapper = () => {
   const pointLight = new PointLight(
@@ -6,11 +8,11 @@ const PointLightWrapper = () => {
     3,
     150
   );
-  pointLight.position.set(0, 30, 0);
+  pointLight.position.set(0, 50, 0);
   pointLight.castShadow = true;
 
-  pointLight.shadow.mapSize.width = 4096;
-  pointLight.shadow.mapSize.height = 4096;
+  pointLight.shadow.mapSize.width = 8192;
+  pointLight.shadow.mapSize.height = 8192;
 
   return pointLight;
 };

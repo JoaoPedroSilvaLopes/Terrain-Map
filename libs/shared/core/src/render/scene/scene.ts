@@ -1,30 +1,19 @@
-import {
-  AmbientLight,
-  Color,
-  Mesh,
-  PointLight,
-  PointLightHelper,
-  Scene,
-} from 'three';
+import { Color, Mesh, PointLight, Scene } from 'three';
+import { AmbientLight } from '../..';
 
-const SceneWrapper = (
-  ambientLight: AmbientLight,
-  pointLight: PointLight,
-  pointLightHelper: PointLightHelper,
-  cloud: Mesh,
-  water: Mesh,
-  baseTable: Mesh
-) => {
+type SceneProps = {
+  pointLight: PointLight;
+  water: Mesh;
+  baseTable: Mesh;
+  cloud: Mesh;
+};
+
+const SceneWrapper = ({ baseTable, cloud, pointLight, water }: SceneProps) => {
+  const ambientLight = AmbientLight();
+
   const scene = new Scene();
-  scene.background = new Color('#FFEECC');
-  scene.add(
-    ambientLight,
-    pointLight,
-    pointLightHelper,
-    //cloud,
-    water,
-    baseTable
-  );
+  scene.background = new Color('#4B696C');
+  scene.add(ambientLight, pointLight, cloud, water, baseTable);
 
   return scene;
 };

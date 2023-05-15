@@ -19,7 +19,7 @@ const Cloud = (cloudQuantity: number, area: number) => {
 
     cloudGeo.translate(
       Math.floor(Math.random() * (max - min + 1)) + min,
-      Math.floor(Math.random() * (max - 20 + 1)) + 20,
+      Math.floor(Math.random() * (max - area + 1)) + area,
       Math.floor(Math.random() * (max - min + 1)) + min
     );
 

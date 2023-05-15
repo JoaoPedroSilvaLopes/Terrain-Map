@@ -1,14 +1,23 @@
-import { ProceduralRender } from "@terrain-map/modules/render"
-import { GlobalStyle } from '@terrain-map/shared/styles'
-import { ThemeContext, useThemeMode } from '@terrain-map/shared/core'
+import { ProceduralRender } from '@terrain-map/modules/render';
+import { GlobalStyle } from '@terrain-map/shared/styles';
+import {
+  ShadowProvider,
+  LightProvider,
+  ThemeContext,
+  useThemeMode,
+} from '@terrain-map/shared/core';
 
 export const App = () => {
-  const { themeToggler } = useThemeMode()
+  const { themeToggler } = useThemeMode();
 
   return (
-    <ThemeContext>
-      <GlobalStyle />
-      <ProceduralRender themeToggler={themeToggler} />
-    </ThemeContext>
-  )
-}
+    <ShadowProvider defaultMode={false}>
+      <LightProvider defaultMode={false}>
+        <ThemeContext>
+          <GlobalStyle />
+          <ProceduralRender themeToggler={themeToggler} />
+        </ThemeContext>
+      </LightProvider>
+    </ShadowProvider>
+  );
+};

@@ -1,5 +1,6 @@
 import { Form as BsForm } from 'react-bootstrap';
 import { Button, Input, Range } from '@terrain-map/shared/components';
+import { useLight, useShadow } from '@terrain-map/shared/core';
 import * as S from './form.styles';
 
 type Props = {
@@ -9,6 +10,9 @@ type Props = {
 };
 
 const Form: React.FC<Props> = ({ onSubmit, onClick, themeToggler }) => {
+  const { toggleShadow } = useShadow();
+  const { toggleLight } = useLight();
+
   return (
     <S.FormContainer>
       <S.MenuTitle>Procedural Render</S.MenuTitle>
@@ -20,11 +24,11 @@ const Form: React.FC<Props> = ({ onSubmit, onClick, themeToggler }) => {
       </div>
       <S.SwitchContainer>
         <span>Sombras</span>
-        <BsForm.Check type="switch" />
+        <BsForm.Check type="switch" onClick={() => toggleShadow()} />
       </S.SwitchContainer>
       <S.SwitchContainer>
         <span>Iluminação</span>
-        <BsForm.Check type="switch" />
+        <BsForm.Check type="switch" onClick={() => toggleLight()} />
       </S.SwitchContainer>
 
       <label id="switch" className="switch">

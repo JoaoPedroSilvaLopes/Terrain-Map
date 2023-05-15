@@ -1,10 +1,10 @@
 import { FiveToneGradient } from '@terrain-map/shared/core';
-import { CylinderGeometry, Mesh, MeshToonMaterial, Color } from 'three';
+import { BoxGeometry, Mesh, MeshToonMaterial, Color } from 'three';
 
 const Water = (alturaAgua: number, visibilidade: boolean, area: number) => {
   const gradient = FiveToneGradient();
 
-  const waterGeometry = new CylinderGeometry(area + 2, area + 2, 0.5, 6);
+  const waterGeometry = new BoxGeometry(area,  0.5, area);
   const waterMaterial = new MeshToonMaterial({
     color: new Color('#1ca3ec').convertSRGBToLinear().multiplyScalar(3),
     gradientMap: gradient,

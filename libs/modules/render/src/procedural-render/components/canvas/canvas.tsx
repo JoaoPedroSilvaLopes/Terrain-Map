@@ -1,77 +1,27 @@
 import { useEffect } from 'react';
-import { Renderer } from '@terrain-map/shared/core';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { Renderer, useShadow } from '@terrain-map/shared/core';
 import { useRendered } from '../../hooks';
-import {
-  ProceduralRenderUtils as PRUtils
-} from '@terrain-map/shared/meshes-components';
 
 type Props = {
   area: number;
+  image: HTMLImageElement;
 };
 
-const Canvas: React.FC<Props> = ({ area }) => {
-  const {
-    heightMap,
-    mainCamera,
-    scene,
-    cloud,
-    pointLight,
-
-    renderer,
-    setRenderer,
-  } = useRendered();
-
-  const canvas = document.getElementById('threejs') as HTMLCanvasElement;
+const Canvas: React.FC<Props> = ({ area, image }) => {
+  const { shadow } = useShadow();
+  const { renderer, setRenderer, scene, mainCamera, animate, createTerraForm } =
+    useRendered(area, image);
 
   useEffect(() => {
-    if (canvas) {
-      setRenderer(Renderer(scene, mainCamera, canvas));
-    }
-  }, [canvas]);
-
-  console.log(heightMap)
+    setRenderer(Renderer(scene, mainCamera, shadow));
+  }, [shadow]);
 
   useEffect(() => {
-    if (renderer) {
-      renderer.clear();
-      renderer.dispose();
-      new OrbitControls(mainCamera, renderer.domElement);
-
-      const animate = () => {
-        const time = Date.now() * 0.0005;
-        pointLight.position.x = Math.sin(time) * area;
-        pointLight.position.z = Math.sin(time) * area;
-
-        cloud.position.x = Math.sin(time) * 1;
-        cloud.position.z = Math.sin(time) * 1;
-
-        renderer.render(scene, mainCamera);
-        window.requestAnimationFrame(animate);
-      };
-
-      const createTerraForm = async () => {
-        for (let i = 0; i < heightMap.length; i++) {
-          for (let j = 0; j < heightMap.length; j++) {
-            const position = PRUtils.spacingMeshHexagon(i, j);
-            const heightMapData = heightMap[i][j];
-
-            PRUtils.generateTerrain({
-              height: heightMapData.height,
-              position: position,
-              scene: scene,
-              color: heightMapData.color,
-            });
-          }
-        }
-
-        animate();
-      };
-      createTerraForm();
-    }
+    animate();
+    createTerraForm();
   }, [area, renderer]);
 
-  return <canvas />;
+  return <canvas id="threejs" />;
 };
 
 export default Canvas;

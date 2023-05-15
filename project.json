@@ -1,5 +1,5 @@
 {
-  "name": "procedural-render",
+  "name": "terrain-map",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "./src",
   "projectType": "application",
@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/procedural-render"
+        "outputPath": "dist/terrain-map"
       },
       "configurations": {
         "development": {
@@ -24,15 +24,15 @@
       "executor": "@nrwl/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "procedural-render:build"
+        "buildTarget": "terrain-map:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "procedural-render:build:development",
+          "buildTarget": "terrain-map:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "procedural-render:build:production",
+          "buildTarget": "terrain-map:build:production",
           "hmr": false
         }
       }
@@ -41,23 +41,23 @@
       "executor": "@nrwl/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "procedural-render:build"
+        "buildTarget": "terrain-map:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "procedural-render:build:development"
+          "buildTarget": "terrain-map:build:development"
         },
         "production": {
-          "buildTarget": "procedural-render:build:production"
+          "buildTarget": "terrain-map:build:production"
         }
       }
     },
     "test": {
       "executor": "@nrwl/vite:test",
-      "outputs": ["coverage/procedural-render"],
+      "outputs": ["coverage/terrain-map"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "coverage/procedural-render"
+        "reportsDirectory": "coverage/terrain-map"
       }
     },
     "lint": {
@@ -65,6 +65,12 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["./src/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "terrain-map:build"
       }
     }
   },

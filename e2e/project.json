@@ -8,12 +8,15 @@
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "e2e/cypress.config.ts",
-        "devServerTarget": "procedural-render:serve:development",
+        "devServerTarget": "terrain-map:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "procedural-render:serve:production"
+          "devServerTarget": "terrain-map:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "terrain-map:serve-static"
         }
       }
     },
@@ -26,5 +29,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["procedural-render"]
+  "implicitDependencies": ["terrain-map"]
 }

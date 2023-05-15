@@ -15,10 +15,17 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@procedural-render/modules/render/procedural-render": [
-        "modules/render/procedural-render/src/index.ts"
+      "@terrain-map/modules/render": ["libs/modules/render/src/index.ts"],
+      "@terrain-map/shared/assets": ["libs/shared/assets/src/index.ts"],
+      "@terrain-map/shared/components": ["libs/shared/components/src/index.ts"],
+      "@terrain-map/shared/core": ["libs/shared/core/src/index.ts"],
+      "@terrain-map/shared/domain-types": [
+        "libs/shared/domain-types/src/index.ts"
       ],
-      "@procedural-render/shared": ["shared/src/index.ts"]
+      "@terrain-map/shared/meshes-components": [
+        "libs/shared/meshes-components/src/index.ts"
+      ],
+      "@terrain-map/shared/styles": ["libs/shared/styles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

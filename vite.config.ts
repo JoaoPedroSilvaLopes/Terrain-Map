@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  cacheDir: './node_modules/.vite/procedural-render',
+  cacheDir: './node_modules/.vite/terrain-map',
 
   server: {
     port: 4200,

@@ -14,19 +14,23 @@
 As tecnologias utilizadas em todos os projetos foram
 
 ### :gear: Arquitetura
+
 - <a href="https://nx.dev/recipes/nx-console">NX Console</a>
 
 ### :keyboard: Desenvolvimento
+
 - <a href="https://www.typescriptlang.org">TypeScript</a>
 - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>
 - <a href="https://threejs.org">ThreeJS</a>
 - <a href="https://leafletjs.com">Leaflet</a>
 
 ### :art: Estilização
+
 - <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a>
 - <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a>
 - <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap 5</a>
 - <a href="https://styled-components.com">Styled Components</a>
 
 ### :framed_picture: Design das telas
+
 - <a href="https://www.figma.com/file/TknTfh7qs9neG7AbgT4seG/Procedural-Render?node-id=0%3A1&t=ezZdxKeLdofJ4jm1-1" />Figma do Projeto</a>

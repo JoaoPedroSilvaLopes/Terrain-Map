@@ -1,15 +1,14 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "procedural-render",
+  "npmScope": "terrain-map",
   "affected": {
     "defaultBase": "master"
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "YWExZDY3MzctM2UwMS00OTJjLWJhZWMtODc2NjMzYTU5NTZkfHJlYWQtd3JpdGU="
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -41,7 +40,7 @@
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/jest.config.[jt]s"
     ],
-    "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
+    "sharedGlobals": []
   },
   "generators": {
     "@nrwl/react": {
@@ -61,5 +60,5 @@
       }
     }
   },
-  "defaultProject": "procedural-render"
+  "defaultProject": "terrain-map"
 }

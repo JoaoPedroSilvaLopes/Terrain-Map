@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('procedural-render', () => {
+describe('terrain-map', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
@@ -8,6 +8,6 @@ describe('procedural-render', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome procedural-render');
+    getGreeting().contains('Welcome terrain-map');
   });
 });

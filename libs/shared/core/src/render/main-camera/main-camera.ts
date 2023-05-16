@@ -4,7 +4,8 @@ const MainCameraWrapper = () => {
   const width = window.innerWidth;
   const height = window.innerHeight;
   const mainCamera = new PerspectiveCamera(50, width / height, 1, 2000);
-  mainCamera.position.set(0, 30, 90);
+  mainCamera.translateY(10);
+  mainCamera.rotateZ(45)
 
   return mainCamera;
 };

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Canvas, Form, Map } from '../components';
 import * as S from './procedural-render.styles';
 
-import { TesteMinecraft } from '@terrain-map/shared/assets';
+// import { TesteMinecraft, Teste } from '@terrain-map/shared/assets';
 
 type Props = {
   themeToggler: () => void;
@@ -10,8 +10,8 @@ type Props = {
 
 export const ProceduralRender: React.FC<Props> = ({ themeToggler }) => {
   const [generate, setGenerate] = useState<boolean>(false);
-  const [area, setArea] = useState<number>(50);
-  const [image, setImage] = useState<HTMLImageElement | null>(null);
+  const [area, setArea] = useState<number>(32);
+  //const [image, setImage] = useState<HTMLImageElement | null>(null);
 
   const [coordenadas, setCoordenadas] = useState<google.maps.LatLngLiteral>({
     lat: -3.871284,
@@ -19,20 +19,20 @@ export const ProceduralRender: React.FC<Props> = ({ themeToggler }) => {
   });
 
   const onClick = () => {
-    const img = new Image();
-    img.src = TesteMinecraft;
+    // const img = new Image();
+    // img.src = Teste;
 
-    img.onload = () => {
-      setImage(img);
-    };
+    // img.onload = () => {
+    //   setImage(img);
+    // };
     setGenerate(!generate);
   };
 
   return (
     <S.PageWrapper>
       <S.MapWrapper>
-        {generate && image ? (
-          <Canvas area={area} image={image} />
+        {generate ? (
+          <Canvas area={area} />
         ) : (
           <Map coordenadas={coordenadas} />
         )}

@@ -12,7 +12,7 @@ const SceneWrapper = ({ baseTable, cloud, pointLight, water }: SceneProps) => {
   const ambientLight = AmbientLight();
 
   const scene = new Scene();
-  scene.background = new Color('#4B696C');
+  scene.background = new Color('#94CED3');
   scene.add(ambientLight, pointLight, cloud, water, baseTable);
 
   return scene;

@@ -1,20 +1,22 @@
 import { useEffect } from 'react';
-import { Renderer, useShadow } from '@terrain-map/shared/core';
+import { Renderer, useLight, useShadow } from '@terrain-map/shared/core';
 import { useRendered } from '../../hooks';
+import THREE from 'three';
 
 type Props = {
   area: number;
-  image: HTMLImageElement;
-};
+  image?: HTMLImageElement;
+}
 
-const Canvas: React.FC<Props> = ({ area, image }) => {
+const Canvas: React.FC<Props> = ({ area }) => {
   const { shadow } = useShadow();
+  const { light } = useLight();
   const { renderer, setRenderer, scene, mainCamera, animate, createTerraForm } =
-    useRendered(area, image);
+    useRendered(area);
 
   useEffect(() => {
     setRenderer(Renderer(scene, mainCamera, shadow));
-  }, [shadow]);
+  }, [shadow, light]);
 
   useEffect(() => {
     animate();

@@ -31,6 +31,7 @@ const Cloud = (cloudQuantity: number, area: number) => {
 
   const cloudMesh = new Mesh(geo, cloudMaterial);
   cloudMesh.castShadow = true;
+  cloudMesh.visible = false;
 
   return cloudMesh;
 };

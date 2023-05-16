@@ -1,25 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
+  FiveToneGradient,
   MainCamera,
   PointLight,
   Renderer,
   Scene,
 } from '@terrain-map/shared/core';
-import { WebGL1Renderer } from 'three';
+import {
+  BoxGeometry,
+  FrontSide,
+  Mesh,
+  MeshPhongMaterial,
+  WebGL1Renderer,
+  CullFace,
+  DoubleSide,
+  Camera,
+  Frustum,
+  Matrix4,
+  MeshToonMaterial,
+  Color,
+} from 'three';
 import {
   BaseTable,
   Cloud,
   Water,
   ProceduralRenderUtils as PRUtils,
+  Player,
 } from '@terrain-map/shared/meshes-components';
 import { TerrainMapUtils } from '../utils';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { createNoise2D } from 'simplex-noise';
+import { Biome } from '@terrain-map/shared/domain-types';
 
-export const useRendered = (area: number, image: HTMLImageElement) => {
+export const useRendered = (area: number, image?: HTMLImageElement) => {
   const [renderer, setRenderer] = useState<WebGL1Renderer>();
+  const [biome, setBiome] = useState<Biome>(PRUtils.getBiome('desert'));
 
   // ESTRUTURAS
-  const heightMap = TerrainMapUtils.getPixels(10, image);
+  //const heightMap = TerrainMapUtils.getPixels(200);
+  const noise2D = createNoise2D();
   const baseTable = BaseTable(area);
   const cloud = Cloud(area / 4, area);
   const water = Water(0.15, true, area);
@@ -41,27 +60,47 @@ export const useRendered = (area: number, image: HTMLImageElement) => {
     cloud.position.x = Math.sin(time) * area;
     cloud.position.z = Math.sin(time) * area;
 
-    control?.update()
+    control?.update();
     renderer && renderer.render(scene, mainCamera);
     requestAnimationFrame(animate);
   };
 
-  const createTerraForm = () => {
-    for (let i = 0; i < heightMap.length; i++) {
-      for (let j = 0; j < heightMap.length; j++) {
-        const i1 = i - heightMap.length / 2;
-        const j1 = j - heightMap.length / 2;
+  const player = Player()
+  
+  scene.add(player)
+  
 
-        const position = PRUtils.spacingMeshCube(i1, j1);
-        const heightMapData = heightMap[i][j];
+  const createTerraForm = () => {
+    for (let i = -area / 2; i < area / 2; i++) {
+      for (let j = -area / 2; j < area / 2; j++) {
+        const position = PRUtils.spacingMeshCube(i, j);
+
+        //if (position.length() > area + 1) continue;
+        const noise = (noise2D(i * 0.1, j * 0.1) + 1) * 0.5;
+
         PRUtils.generateTerrain({
-          height: heightMapData.height,
-          position: position,
-          scene: scene,
-          color: heightMapData.color,
+          height: noise * biome.maxHeight,
+          position,
+          biome,
+          scene,
         });
       }
     }
+
+    // for (let y = 0; y < chunkSize; y++) {
+    //   for (let z = 0; z < chunkSize; z++) {
+    //     for (let x = 0; x < chunkSize; x++) {
+    //       const offset = (y * chunkSize ** 2) + (z * chunkSize) + x
+
+    //       const voxel = chunk[offset]
+
+    //       const mesh = new Mesh(geometry, material)
+
+    //       mesh.position.set(x, y, z)
+    //       scene.add(mesh)
+    //     }
+    //   }
+    // }
   };
 
   return {

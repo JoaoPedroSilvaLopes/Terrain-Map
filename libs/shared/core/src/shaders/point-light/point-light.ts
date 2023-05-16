@@ -3,8 +3,15 @@ import { useLight } from '../../hooks';
 import { useEffect } from 'react';
 
 const PointLightWrapper = () => {
+  const { light } = useLight()
+  const color = light ? '#f9f4d9' : '#000000'
+
+  useEffect(() => {
+    console.log()
+  }, [light])
+
   const pointLight = new PointLight(
-    new Color('#f9f4d9').convertSRGBToLinear().convertSRGBToLinear(),
+    new Color(color).convertSRGBToLinear().convertSRGBToLinear(),
     3,
     150
   );

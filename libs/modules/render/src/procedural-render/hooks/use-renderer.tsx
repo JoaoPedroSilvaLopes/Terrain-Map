@@ -19,6 +19,7 @@ import {
   Matrix4,
   MeshToonMaterial,
   Color,
+  WebGLRenderer,
 } from 'three';
 import {
   BaseTable,
@@ -33,14 +34,14 @@ import { createNoise2D } from 'simplex-noise';
 import { Biome } from '@terrain-map/shared/domain-types';
 
 export const useRendered = (area: number, image?: HTMLImageElement) => {
-  const [renderer, setRenderer] = useState<WebGL1Renderer>();
-  const [biome, setBiome] = useState<Biome>(PRUtils.getBiome('desert'));
+  const [renderer, setRenderer] = useState<WebGLRenderer>();
+  const [biome, setBiome] = useState<Biome>(PRUtils.getBiome('forest'));
 
   // ESTRUTURAS
   //const heightMap = TerrainMapUtils.getPixels(200);
   const noise2D = createNoise2D();
-  const baseTable = BaseTable(area);
-  const cloud = Cloud(area / 4, area);
+  //const baseTable = BaseTable(area);
+  //const cloud = Cloud(area / 4, area);
   const water = Water(0.15, true, area);
 
   // ILUMINAÇÃO
@@ -48,7 +49,7 @@ export const useRendered = (area: number, image?: HTMLImageElement) => {
 
   // CENA
   const mainCamera = MainCamera();
-  const scene = Scene({ baseTable, cloud, water, pointLight });
+  const scene = Scene({ water, pointLight });
   const control =
     renderer && new OrbitControls(mainCamera, renderer.domElement);
 
@@ -57,8 +58,8 @@ export const useRendered = (area: number, image?: HTMLImageElement) => {
     pointLight.position.x = Math.sin(time) * area;
     pointLight.position.z = Math.sin(time) * area;
 
-    cloud.position.x = Math.sin(time) * area;
-    cloud.position.z = Math.sin(time) * area;
+    //cloud.position.x = Math.sin(time) * area;
+    //cloud.position.z = Math.sin(time) * area;
 
     control?.update();
     renderer && renderer.render(scene, mainCamera);

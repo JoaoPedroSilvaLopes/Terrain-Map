@@ -4,8 +4,8 @@ import { AmbientLight } from '../..';
 type SceneProps = {
   pointLight: PointLight;
   water: Mesh;
-  baseTable: Mesh;
-  cloud: Mesh;
+  baseTable?: Mesh;
+  cloud?: Mesh;
 };
 
 const SceneWrapper = ({ baseTable, cloud, pointLight, water }: SceneProps) => {
@@ -13,7 +13,7 @@ const SceneWrapper = ({ baseTable, cloud, pointLight, water }: SceneProps) => {
 
   const scene = new Scene();
   scene.background = new Color('#94CED3');
-  scene.add(ambientLight, pointLight, cloud, water, baseTable);
+  scene.add(ambientLight, pointLight, water);
 
   return scene;
 };

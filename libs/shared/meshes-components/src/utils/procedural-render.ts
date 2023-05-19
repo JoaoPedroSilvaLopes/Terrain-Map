@@ -74,15 +74,15 @@ export const generateTerrain = ({ height, position, biome, scene }: Props) => {
 
   else if (height <= biome.sandHeight) {
     scene.add(CubeMesh({height, position, color: "#f6d7b0"}))
-    // random > 0.8 && scene.add(stone)
+    random > 0.8 && scene.add(stone)
   }
   
   else if (height <= biome.grassHeight) {
     scene.add(CubeMesh({height, position, color: "#567d46"}))
-    // random > 0.90 && scene.add(
-    //   tree[0] as Mesh,
-    //   ...tree[1] as Mesh[]
-    // )
+    random > 0.90 && scene.add(
+      tree[0] as Mesh,
+      ...tree[1] as Mesh[]
+    )
   }
   else if (height <= biome.groundHeight) { 
     scene.add(CubeMesh({height, position, color: "#684132"}))
@@ -90,6 +90,6 @@ export const generateTerrain = ({ height, position, biome, scene }: Props) => {
 
   else {
     scene.add(CubeMesh({height, position, color: "#808080"}))
-    // random > 0.8 && scene.add(stone)
+    random > 0.8 && scene.add(stone)
   }
 };

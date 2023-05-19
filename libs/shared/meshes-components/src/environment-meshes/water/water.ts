@@ -18,7 +18,7 @@ const Water = (alturaAgua: number, visibilidade: boolean, area: number) => {
   water.receiveShadow = true;
   water.material.needsUpdate = true;
 
-  water.position.set(0, alturaAgua, 0);
+  water.position.set(-0.5, alturaAgua, -0.5);
 
   return water;
 };

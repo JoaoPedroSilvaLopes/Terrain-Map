@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useState } from 'react';
 
 type Props = {
-  defaultMode: false;
+  defaultMode: false | true;
   children: ReactNode;
 };
 

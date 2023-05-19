@@ -12,7 +12,7 @@ export const App = () => {
 
   return (
     <ShadowProvider defaultMode={false}>
-      <LightProvider defaultMode={false}>
+      <LightProvider defaultMode={true}>
         <ThemeContext>
           <GlobalStyle />
           <ProceduralRender themeToggler={themeToggler} />

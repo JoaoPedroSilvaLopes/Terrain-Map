@@ -3,7 +3,7 @@ import {
   PCFSoftShadowMap,
   PerspectiveCamera,
   Scene,
-  WebGL1Renderer,
+  WebGLRenderer
 } from 'three';
 
 const RendererWrapper = (
@@ -11,8 +11,12 @@ const RendererWrapper = (
   mainCamera: PerspectiveCamera,
   shadow: boolean
 ) => {
-  const renderer = new WebGL1Renderer({
-    canvas: document.getElementById('threejs') as HTMLCanvasElement,
+  const canvas = document.getElementById('threejs') as HTMLCanvasElement
+  const context = canvas.getContext('webgl2') as WebGL2RenderingContext
+
+  const renderer = new WebGLRenderer({
+    canvas: canvas,
+    context: context,
     antialias: true,
     logarithmicDepthBuffer: true,
     preserveDrawingBuffer: true,

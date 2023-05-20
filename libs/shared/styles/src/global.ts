@@ -10,7 +10,6 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;
   }
 
   h1, h2 {
@@ -18,7 +17,10 @@ export const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.colors.textPrimary};
     text-align: center;
     font-family: 'Poppins';
-    font-weight: 700;
     line-height: 1.5rem;
+  }
+
+  span {
+    color: ${(props) => props.theme.colors.textPrimary};
   }
 `;

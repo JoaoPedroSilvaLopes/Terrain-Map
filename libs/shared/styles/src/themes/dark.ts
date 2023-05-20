@@ -3,8 +3,9 @@ import { DefaultTheme } from 'styled-components';
 export const dark: DefaultTheme = {
   title: 'dark',
   colors: {
-    primary: '#555555',
-    background: '#444444',
+    primary: '#4B8EE5',
+    background: '#555555',
+    backgroundContent: '#666666',
     textPrimary: '#ffffff',
     textSecondary: '#ffffff',
   },

@@ -19,7 +19,7 @@ const Cloud = (cloudQuantity: number, area: number) => {
 
     cloudGeo.translate(
       Math.floor(Math.random() * (max - min + 1)) + min,
-      Math.floor(Math.random() * (max - area + 1)) + area,
+      30 + Math.random() * 0.5,
       Math.floor(Math.random() * (max - min + 1)) + min
     );
 
@@ -31,6 +31,7 @@ const Cloud = (cloudQuantity: number, area: number) => {
 
   const cloudMesh = new Mesh(geo, cloudMaterial);
   cloudMesh.castShadow = true;
+  cloudMesh.visible = true;
 
   return cloudMesh;
 };

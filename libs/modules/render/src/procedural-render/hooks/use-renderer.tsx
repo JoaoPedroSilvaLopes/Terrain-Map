@@ -1,64 +1,69 @@
 import { useState } from 'react';
 import {
   MainCamera,
+  OptionsModel,
   PointLight,
   Renderer,
   Scene,
 } from '@terrain-map/shared/core';
-import { WebGL1Renderer } from 'three';
+import { WebGLRenderer } from 'three';
 import {
-  BaseTable,
   Cloud,
   Water,
   ProceduralRenderUtils as PRUtils,
 } from '@terrain-map/shared/meshes-components';
 import { TerrainMapUtils } from '../utils';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { createNoise2D } from 'simplex-noise';
+import { Biome } from '@terrain-map/shared/domain-types';
 
-export const useRendered = (area: number, image: HTMLImageElement) => {
-  const [renderer, setRenderer] = useState<WebGL1Renderer>();
+export const useRendered = (area: number, image?: HTMLImageElement) => {
+  const [renderer, setRenderer] = useState<WebGLRenderer>();
+  const [biome, setBiome] = useState<Biome>(PRUtils.getBiome('forest'));
 
   // ESTRUTURAS
-  const heightMap = TerrainMapUtils.getPixels(10, image);
-  const baseTable = BaseTable(area);
-  const cloud = Cloud(area / 4, area);
-  const water = Water(0.15, true, area);
+  //const heightMap = TerrainMapUtils.getPixels(200);
+  const noise2D = createNoise2D();
 
-  // ILUMINAÇÃO
+  // CENA
+  const cloud = Cloud(area / 4, area);
+  const water = Water(area);
   const pointLight = PointLight();
+  const scene = Scene();
+  scene.add(water, pointLight, cloud);
 
   // CENA
   const mainCamera = MainCamera();
-  const scene = Scene({ baseTable, cloud, water, pointLight });
+
   const control =
     renderer && new OrbitControls(mainCamera, renderer.domElement);
 
   const animate = () => {
-    const time = Date.now() * 0.00005;
+    const time = Date.now() * 0.0005;
     pointLight.position.x = Math.sin(time) * area;
     pointLight.position.z = Math.sin(time) * area;
 
     cloud.position.x = Math.sin(time) * area;
     cloud.position.z = Math.sin(time) * area;
 
-    control?.update()
+    control?.update();
     renderer && renderer.render(scene, mainCamera);
     requestAnimationFrame(animate);
   };
 
-  const createTerraForm = () => {
-    for (let i = 0; i < heightMap.length; i++) {
-      for (let j = 0; j < heightMap.length; j++) {
-        const i1 = i - heightMap.length / 2;
-        const j1 = j - heightMap.length / 2;
+  const createTerraForm = (model: OptionsModel) => {
+    for (let i = -area / 2; i < area / 2; i++) {
+      for (let j = -area / 2; j < area / 2; j++) {
+        const noise = (noise2D(i * 0.1, j * 0.1) + 1) * 0.5;
 
-        const position = PRUtils.spacingMeshCube(i1, j1);
-        const heightMapData = heightMap[i][j];
         PRUtils.generateTerrain({
-          height: heightMapData.height,
-          position: position,
-          scene: scene,
-          color: heightMapData.color,
+          model: model,
+          height: noise * biome.maxHeight,
+          position: {
+            x: i,
+            y: j,
+          },
+          scene,
         });
       }
     }

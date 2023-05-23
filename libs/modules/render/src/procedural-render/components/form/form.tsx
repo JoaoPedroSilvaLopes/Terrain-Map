@@ -1,40 +1,96 @@
 import { Form as BsForm } from 'react-bootstrap';
-import { Button, Input, Range } from '@terrain-map/shared/components';
-import { useLight, useShadow } from '@terrain-map/shared/core';
+import {
+  Button,
+  Input,
+  Panel,
+  Select,
+  ThemeSwitch,
+} from '@terrain-map/shared/components';
+import {
+  Options,
+  useDetail,
+  useLight,
+  useModel,
+  useShadow,
+} from '@terrain-map/shared/core';
 import * as S from './form.styles';
 
 type Props = {
   onClick: () => void;
-  onSubmit?: () => void;
   themeToggler: () => void;
+  isGenerate: boolean;
 };
 
-const Form: React.FC<Props> = ({ onSubmit, onClick, themeToggler }) => {
-  const { toggleShadow } = useShadow();
-  const { toggleLight } = useLight();
+const Form: React.FC<Props> = ({ onClick, themeToggler, isGenerate }) => {
+  const { model, toggleModel } = useModel();
+  const { detailLevel, toggleDetailLevel } = useDetail();
+  const { light, toggleLight } = useLight();
+  const { shadow, toggleShadow } = useShadow();
+
+  const controlLight = () => {
+    toggleLight();
+    shadow && toggleShadow();
+  };
 
   return (
     <S.FormContainer>
       <S.MenuTitle>Procedural Render</S.MenuTitle>
-      <Input />
-      <Button onClick={() => onClick()}>Gerar Terraform Hexagonal</Button>
-      <div className="mt-3">
-        <S.MenuSubTitle>Nível de detalhe</S.MenuSubTitle>
-        <Range />
-      </div>
-      <S.SwitchContainer>
-        <span>Sombras</span>
-        <BsForm.Check type="switch" onClick={() => toggleShadow()} />
-      </S.SwitchContainer>
-      <S.SwitchContainer>
-        <span>Iluminação</span>
-        <BsForm.Check type="switch" onClick={() => toggleLight()} />
-      </S.SwitchContainer>
-
-      <label id="switch" className="switch">
-        <input type="checkbox" onClick={themeToggler} id="slider" />
-        <span className="slider round"></span>
-      </label>
+      {!isGenerate && <Input placeholder="Pesquisar" />}
+      <Panel title="Tipo do modelo">
+        <S.SwitchContainer>
+          <span>Cúbico</span>
+          <BsForm.Check
+            type="switch"
+            checked={model === 'cube'}
+            disabled={model === 'cube'}
+            onClick={() => toggleModel('cube')}
+          />
+        </S.SwitchContainer>
+        <S.SwitchContainer>
+          <span>Hexagonal</span>
+          <BsForm.Check
+            type="switch"
+            checked={model === 'hexagon'}
+            disabled={model === 'hexagon'}
+            onClick={() => toggleModel('hexagon')}
+          />
+        </S.SwitchContainer>
+        <S.SwitchContainer>
+          <span>Nível de detalhe</span>
+          <Select
+            defaultValue={detailLevel}
+            onChange={(e) => toggleDetailLevel(e.target.value as Options)}
+          >
+            <option value={'baixo'}>Baixo</option>
+            <option value={'medio'}>Médio</option>
+            <option value={'alto'}>Alto</option>
+          </Select>
+        </S.SwitchContainer>
+      </Panel>
+      <Panel title="Sombras e Iluminação">
+        <S.SwitchContainer>
+          <span>Iluminação</span>
+          <BsForm.Check
+            type="switch"
+            checked={light}
+            onClick={() => controlLight()}
+          />
+        </S.SwitchContainer>
+        {light && (
+          <S.SwitchContainer>
+            <span>Sombras</span>
+            <BsForm.Check
+              type="switch"
+              checked={shadow}
+              onClick={() => toggleShadow()}
+            />
+          </S.SwitchContainer>
+        )}
+      </Panel>
+      <Button onClick={() => onClick()}>
+        {isGenerate ? 'Pesquisar outra localização' : 'Gerar Modelo 3D'}
+      </Button>
+      <ThemeSwitch onClick={themeToggler} />
     </S.FormContainer>
   );
 };

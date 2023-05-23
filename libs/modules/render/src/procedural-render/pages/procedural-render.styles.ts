@@ -9,8 +9,8 @@ export const PageWrapper = styled.div`
 export const MapWrapper = styled.div`
   min-width: 75%;
   background: #3333;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0rem 0.5rem 0.5rem -0.5rem,
+    rgba(0, 0, 0, 0.25) 0rem 0.5rem 1rem -0.5rem;
 
   #threejs {
     width: 100%;

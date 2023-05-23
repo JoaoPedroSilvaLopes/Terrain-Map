@@ -6,12 +6,12 @@ type InputProps = React.DetailedHTMLProps<
   HTMLInputElement
 >;
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({ ...rest }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ placeholder, ...rest }, ref) => {
   return (
     <S.InputWrapper
       {...rest}
       ref={ref}
-      placeholder="Insira uma localização"
+      placeholder={placeholder}
       autoFocus
     />
   );

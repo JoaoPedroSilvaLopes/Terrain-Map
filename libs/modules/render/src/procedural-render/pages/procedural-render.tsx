@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Canvas, Form, Map } from '../components';
-import * as S from './procedural-render.styles';
-
 import { TesteMinecraft } from '@terrain-map/shared/assets';
+
+import * as S from './procedural-render.styles';
 
 type Props = {
   themeToggler: () => void;
@@ -10,21 +10,22 @@ type Props = {
 
 export const ProceduralRender: React.FC<Props> = ({ themeToggler }) => {
   const [generate, setGenerate] = useState<boolean>(false);
-  const [area, setArea] = useState<number>(50);
   const [image, setImage] = useState<HTMLImageElement | null>(null);
-
   const [coordenadas, setCoordenadas] = useState<google.maps.LatLngLiteral>({
     lat: -3.871284,
     lng: -38.613565,
   });
 
-  const onClick = () => {
+  const onClickGenerate = () => {
     const img = new Image();
     img.src = TesteMinecraft;
-
     img.onload = () => {
       setImage(img);
     };
+    setGenerate(!generate);
+  };
+
+  const onClickClear = () => {
     setGenerate(!generate);
   };
 
@@ -32,13 +33,17 @@ export const ProceduralRender: React.FC<Props> = ({ themeToggler }) => {
     <S.PageWrapper>
       <S.MapWrapper>
         {generate && image ? (
-          <Canvas area={area} image={image} />
+          <Canvas image={image} generate={generate} />
         ) : (
           <Map coordenadas={coordenadas} />
         )}
       </S.MapWrapper>
       <S.MenuWrapper>
-        <Form onClick={onClick} themeToggler={themeToggler} />
+        <Form
+          onClick={!generate ? onClickGenerate : onClickClear}
+          themeToggler={themeToggler}
+          isGenerate={generate}
+        />
       </S.MenuWrapper>
     </S.PageWrapper>
   );

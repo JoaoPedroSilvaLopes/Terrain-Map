@@ -5,6 +5,8 @@ import {
   LightProvider,
   ThemeContext,
   useThemeMode,
+  DetailLevelProvider,
+  ModelProvider,
 } from '@terrain-map/shared/core';
 
 export const App = () => {
@@ -13,10 +15,14 @@ export const App = () => {
   return (
     <ShadowProvider defaultMode={false}>
       <LightProvider defaultMode={true}>
-        <ThemeContext>
-          <GlobalStyle />
-          <ProceduralRender themeToggler={themeToggler} />
-        </ThemeContext>
+        <DetailLevelProvider defaultMode="baixo">
+          <ModelProvider defaultMode="cube">
+            <ThemeContext>
+              <GlobalStyle />
+              <ProceduralRender themeToggler={themeToggler} />
+            </ThemeContext>
+          </ModelProvider>
+        </DetailLevelProvider>
       </LightProvider>
     </ShadowProvider>
   );

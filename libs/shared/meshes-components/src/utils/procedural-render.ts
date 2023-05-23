@@ -1,20 +1,21 @@
-import { Mesh, Scene, Vector2 } from 'three';
-import { CubeMesh } from '../base-meshes';
+import { Scene } from 'three';
+import { CubeMesh, HexagonMesh } from '../base-meshes';
 import {
   Biome,
   BiomeName,
   GenericMesh,
+  Position,
 } from '@terrain-map/shared/domain-types';
-import { Stone, Tree } from '../environment-meshes';
+import { OptionsModel } from '@terrain-map/shared/core';
 
 type Props = {
+  model: OptionsModel;
   scene: Scene;
-  biome: Biome
 } & GenericMesh;
 
 export const getBiome = (biomeName: BiomeName) => {
   switch (biomeName) {
-    case "forest":
+    case 'forest':
       return {
         name: biomeName,
         stoneHeight: 3.5,
@@ -26,7 +27,7 @@ export const getBiome = (biomeName: BiomeName) => {
         maxHeight: 3.5,
         isWater: true,
       } as Biome;
-    case "desert":
+    case 'desert':
       return {
         name: biomeName,
         stoneHeight: 0,
@@ -36,9 +37,9 @@ export const getBiome = (biomeName: BiomeName) => {
         sandHeight: 4,
         waterHeight: 0,
         maxHeight: 4,
-        isWater: false,
+        isWater: true,
       } as Biome;
-    case "mountain":
+    case 'mountain':
       return {
         name: biomeName,
         stoneHeight: 15,
@@ -53,43 +54,63 @@ export const getBiome = (biomeName: BiomeName) => {
   }
 };
 
-export const spacingMeshHexagon = (tileX: number, tileY: number) => {
-  return new Vector2((tileX + (tileY % 2) * 0.5) * 1.73, tileY * 1.495);
-};
-
-export const spacingMeshCube = (tileX: number, tileY: number) => {
-  return new Vector2(tileX, tileY);
-};
-
-export const generateTerrain = ({ height, position, biome, scene }: Props) => {
-  const tree = Tree(height, position);
-  const stone = Stone(height, position);
-  const random = Math.random();
-  //const mesh = CubeMesh({ height, position, color });
-  //scene.add(mesh);
-
-  if (height <= biome.deepGroundHeight) { 
-    scene.add(CubeMesh({height, position, color: "#6f645c"}))
+export const spacingMesh = (
+  meshType: OptionsModel,
+  position: Position
+): Position => {
+  switch (meshType) {
+    case 'cube':
+      return {
+        x: position.x,
+        y: position.y,
+      };
+    case 'hexagon':
+      return {
+        x: (position.x + (position.y % 2) * 0.5) * 1.73,
+        y: position.y * 1.495,
+      };
   }
+};
 
+export const getMesh = (meshType: OptionsModel, position: Position, height: number, biome: BiomeName) => {
+  const spacedPosition = spacingMesh(meshType, position);
+  const color = getColor(height, getBiome(biome))
+
+  switch (meshType) {
+    case 'cube':
+      return CubeMesh({ height, position: spacedPosition, color });
+    case 'hexagon':
+      return HexagonMesh({ height, position: spacedPosition, color });
+  }
+};
+
+export const getColor = (height: number, biome: Biome) => {
+  if (height <= biome.deepGroundHeight) {
+    return "#6f645c"
+  }
   else if (height <= biome.sandHeight) {
-    scene.add(CubeMesh({height, position, color: "#f6d7b0"}))
-    random > 0.8 && scene.add(stone)
+    return "#f6d7b0"
+    //random > 0.8 && scene.add(stone)
   }
-  
+
   else if (height <= biome.grassHeight) {
-    scene.add(CubeMesh({height, position, color: "#567d46"}))
-    random > 0.90 && scene.add(
-      tree[0] as Mesh,
-      ...tree[1] as Mesh[]
-    )
+    return "#567d46"
+    // random > 0.90 && scene.add(
+    //   tree[0] as Mesh,
+    //   ...tree[1] as Mesh[]
+    // )
   }
-  else if (height <= biome.groundHeight) { 
-    scene.add(CubeMesh({height, position, color: "#684132"}))
+  else if (height <= biome.groundHeight) {
+    return "#684132"
   }
 
   else {
-    scene.add(CubeMesh({height, position, color: "#808080"}))
-    random > 0.8 && scene.add(stone)
+    return "#808080"
+   // random > 0.8 && scene.add(stone)
   }
+}
+
+export const generateTerrain = ({ model, height, position, scene }: Props) => {
+  const mesh = getMesh(model, position, height, 'forest');
+  scene.add(mesh)
 };

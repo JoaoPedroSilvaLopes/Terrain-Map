@@ -3,6 +3,7 @@ import { Canvas, Form, Map } from '../components';
 import { TesteMinecraft } from '@terrain-map/shared/assets';
 
 import * as S from './procedural-render.styles';
+import { createNoise2D } from 'simplex-noise';
 
 type Props = {
   themeToggler: () => void;
@@ -19,6 +20,7 @@ export const ProceduralRender: React.FC<Props> = ({ themeToggler }) => {
   const [bounds, setBounds] = useState<google.maps.LatLng[] | undefined>(
     undefined
   );
+  const noise2D = createNoise2D();
 
   const onClickGenerate = () => {
     handleBounds()
@@ -46,11 +48,13 @@ export const ProceduralRender: React.FC<Props> = ({ themeToggler }) => {
     }
   };
 
+  console.log('aaaaaaaaaa')
+
   return (
     <S.PageWrapper>
       <S.MapWrapper>
         {generate && image ? (
-          <Canvas image={image} generate={generate} bounds={bounds}/>
+          <Canvas image={image} generate={generate} bounds={bounds} noise2D={noise2D}/>
         ) : (
           <Map
             coordenadas={defaultCoordenates}

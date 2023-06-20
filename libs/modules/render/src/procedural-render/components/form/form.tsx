@@ -12,6 +12,7 @@ import {
   useLight,
   useModel,
   useShadow,
+  useVisualization,
 } from '@terrain-map/shared/core';
 import * as S from './form.styles';
 
@@ -26,6 +27,7 @@ const Form: React.FC<Props> = ({ onClick, themeToggler, isGenerate }) => {
   const { detailLevel, toggleDetailLevel } = useDetail();
   const { light, toggleLight } = useLight();
   const { shadow, toggleShadow } = useShadow();
+  const { mode, toggleModeVisualization } = useVisualization()
 
   const controlLight = () => {
     toggleLight();
@@ -65,6 +67,35 @@ const Form: React.FC<Props> = ({ onClick, themeToggler, isGenerate }) => {
             <option value={'medio'}>Médio</option>
             <option value={'alto'}>Alto</option>
           </Select>
+        </S.SwitchContainer>
+      </Panel>
+      <Panel title="Tipo de visualização">
+        <S.SwitchContainer>
+          <span>Geográfica</span>
+          <BsForm.Check
+            type="switch"
+            checked={mode === 'geo'}
+            disabled={mode === 'geo'}
+            onClick={() => toggleModeVisualization('geo')}
+          />
+        </S.SwitchContainer>
+        <S.SwitchContainer>
+          <span>Mapa de Alturas</span>
+          <BsForm.Check
+            type="switch"
+            checked={mode === 'height'}
+            disabled={mode === 'height'}
+            onClick={() => toggleModeVisualization('height')}
+          />
+        </S.SwitchContainer>
+        <S.SwitchContainer>
+          <span>Wireframe</span>
+          <BsForm.Check
+            type="switch"
+            checked={mode === 'wireframe'}
+            disabled={mode === 'wireframe'}
+            onClick={() => toggleModeVisualization('wireframe')}
+          />
         </S.SwitchContainer>
       </Panel>
       <Panel title="Sombras e Iluminação">

@@ -23,14 +23,14 @@ const RendererWrapper = (
     precision: 'highp',
   });
 
-  renderer.setPixelRatio(canvas.width / canvas.height);
+
+  renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.render(scene, mainCamera);
   renderer.toneMapping = ACESFilmicToneMapping;
   renderer.shadowMap.type = PCFSoftShadowMap;
 
   renderer.shadowMap.autoUpdate = true;
   renderer.shadowMap.needsUpdate = true;
-
   renderer.shadowMap.enabled = shadow;
 
   return renderer;

@@ -1,16 +1,18 @@
-import { useDetail, useLight, useModel, useShadow } from "@terrain-map/shared/core";
+import { useDetail, useLight, useModel, useShadow, useVisualization } from "@terrain-map/shared/core";
 
 export const useContexts = () => {
   const { shadow } = useShadow();
   const { light } = useLight();
-  const { detailLevel, area } = useDetail();
+  const { detailLevel, sizeDetailtMesh } = useDetail();
   const { model } = useModel();
+  const { mode: modeVisualization } = useVisualization();
 
   return {
     shadow,
     light,
     model,
-    area,
+    modeVisualization,
+    sizeDetailtMesh,
     detailLevel, 
   }
 }

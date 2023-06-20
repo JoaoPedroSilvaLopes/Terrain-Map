@@ -9,7 +9,7 @@ type Props = {
 
 type DetailLevelContextType = {
   detailLevel: Options;
-  area: number;
+  sizeDetailtMesh: number;
   toggleDetailLevel: (mode: Options) => void;
 };
 
@@ -19,13 +19,13 @@ export const DetailLevelContext: React.Context<DetailLevelContextType> =
 const toggleArea = (mode: Options): number => {
   switch (mode) {
     case 'alto':
-      return 64;
-      break;
-    case 'baixo':
-      return 16;
+      return 0.25;
       break;
     case 'medio':
-      return 32;
+      return 0.5;
+      break;
+    case 'baixo':
+      return 1;
       break;
   }
 };
@@ -34,17 +34,17 @@ export const DetailLevelProvider: React.FC<Props> = ({
   children,
   defaultMode,
 }) => {
-  const [area, setArea] = useState<number>(toggleArea(defaultMode));
+  const [sizeDetailtMesh, setSizeDetailtMesh] = useState<number>(toggleArea(defaultMode));
   const [detailLevel, setDetailLevel] = useState<Options>(defaultMode);
 
   const toggleDetailLevel = (mode: Options) => {
     setDetailLevel(mode);
-    setArea(toggleArea(mode));
+    setSizeDetailtMesh(toggleArea(mode));
   };
 
   return (
     <DetailLevelContext.Provider
-      value={{ detailLevel, area, toggleDetailLevel }}
+      value={{ detailLevel, sizeDetailtMesh, toggleDetailLevel }}
     >
       {children}
     </DetailLevelContext.Provider>

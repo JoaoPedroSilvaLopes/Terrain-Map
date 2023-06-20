@@ -1,4 +1,4 @@
-import { Scene } from 'three';
+import { Color, Scene } from 'three';
 import { CubeMesh, HexagonMesh } from '../base-meshes';
 import {
   Biome,
@@ -6,11 +6,13 @@ import {
   GenericMesh,
   Position,
 } from '@terrain-map/shared/domain-types';
-import { OptionsModel } from '@terrain-map/shared/core';
+import { OptionsModel, OptionsVisualization } from '@terrain-map/shared/core';
 
 type Props = {
   model: OptionsModel;
   scene: Scene;
+  detailLevel: number;
+  modeVisualization: OptionsVisualization;
 } & GenericMesh;
 
 export const getBiome = (biomeName: BiomeName) => {
@@ -72,45 +74,84 @@ export const spacingMesh = (
   }
 };
 
-export const getMesh = (meshType: OptionsModel, position: Position, height: number, biome: BiomeName) => {
+export const getMesh = (
+  meshType: OptionsModel,
+  position: Position,
+  height: number,
+  biome: BiomeName,
+  detailLevel: number,
+  modeVisualization: OptionsVisualization
+) => {
   const spacedPosition = spacingMesh(meshType, position);
-  const color = getColor(height, getBiome(biome))
+  const color = getColor(height, getBiome(biome));
 
   switch (meshType) {
     case 'cube':
-      return CubeMesh({ height, position: spacedPosition, color });
+      return CubeMesh({
+        height,
+        position: spacedPosition,
+        color,
+        detailLevel,
+        modeVisualization,
+      });
     case 'hexagon':
-      return HexagonMesh({ height, position: spacedPosition, color });
+      return HexagonMesh({
+        height,
+        position: spacedPosition,
+        color,
+        detailLevel,
+        modeVisualization,
+      });
   }
 };
 
 export const getColor = (height: number, biome: Biome) => {
-  if (height <= biome.deepGroundHeight) {
-    return "#6f645c"
-  }
-  else if (height <= biome.sandHeight) {
-    return "#f6d7b0"
-    //random > 0.8 && scene.add(stone)
-  }
+  const random = Math.random();
 
-  else if (height <= biome.grassHeight) {
-    return "#567d46"
+  if (height <= biome.deepGroundHeight) {
+    return '#6f645c';
+  } else if (height <= biome.sandHeight) {
+    //random > 0.8 && scene.add(stone)
+    return '#f6d7b0';
+  } else if (height <= biome.grassHeight) {
     // random > 0.90 && scene.add(
     //   tree[0] as Mesh,
     //   ...tree[1] as Mesh[]
     // )
+    return '#567d46';
+  } else if (height <= biome.groundHeight) {
+    return '#684132';
+  } else {
+    //random > 0.8 && scene.add(stone)
+    return '#808080';
   }
-  else if (height <= biome.groundHeight) {
-    return "#684132"
-  }
+};
 
-  else {
-    return "#808080"
-   // random > 0.8 && scene.add(stone)
-  }
-}
+export const colorHeight = (height: number) => {
+  const maxHeight = 15;
 
-export const generateTerrain = ({ model, height, position, scene }: Props) => {
-  const mesh = getMesh(model, position, height, 'forest');
-  scene.add(mesh)
+  const colorPercent = (100 * height) / maxHeight;
+  const degreeColor = 240 - (240 * colorPercent) / 100;
+
+  const color = new Color(`hsl(${degreeColor}, 100%, 50%)`);
+  return color;
+};
+
+export const generateTerrain = ({
+  model,
+  height,
+  position,
+  scene,
+  detailLevel,
+  modeVisualization,
+}: Props) => {
+  const mesh = getMesh(
+    model,
+    position,
+    height,
+    'forest',
+    detailLevel,
+    modeVisualization
+  );
+  scene.add(mesh);
 };

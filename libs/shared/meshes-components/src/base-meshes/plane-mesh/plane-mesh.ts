@@ -5,36 +5,30 @@ import {
   Mesh,
   PlaneGeometry,
   ColorRepresentation,
-  DoubleSide,
 } from 'three';
 
 type Props = {
   color?: ColorRepresentation
+  detailLevel?: number
 }
 
-const PlaneMesh = ({ color }: Props) => {
+const PlaneMesh = ({ color, detailLevel }: Props) => {
+  const sizeDimension = detailLevel ? detailLevel : 1
   const gradient = FiveToneGradient();
-  const planeGeometry = new PlaneGeometry(1, 1);
+  const planeGeometry = new PlaneGeometry(sizeDimension, sizeDimension);
 
   const terrainMaterial = new MeshToonMaterial({
     color: new Color(color).convertSRGBToLinear(),
     gradientMap: gradient,
-    wireframe: false
+    wireframe: true
   });
 
   const mesh = new Mesh(planeGeometry, terrainMaterial);
 
-  mesh.material.side = DoubleSide;
+  mesh.material.side = 0;
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   mesh.frustumCulled = true;
-
-  // if (!mesh.frustumCulled) {
-  //   mesh.visible = false
-  // }
-  // else {
-  //   mesh.visible = true
-  // }
 
   return mesh;
 };

@@ -10,8 +10,18 @@
   Esse projeto se trata de uma aplicação web que permite aos usuários gerar mapas em relevo 3D de qualquer localização e personalizar a forma como desejam visualizá-los. Eles podem escolher diferentes tipos de visualização, ajustar nível detalhes e tipos de iluminação do terreno.
 </p>
 <p align="justify">
-  Eles podem escolher diferentes tipos de visualização, ajustar nível detalhes e tipos de iluminação do terreno.
+  Foi utilizado o ambiente NX Workspace para a criação do projeto de forma que se pudesse dividir a aplicação em módulos para melhorar o desenvolvimento aliado com o Typescript.
 </p>
+<p align="justify">
+  Os módulos existentes servem para organizar o projeto como um todo e são divididos em:
+</p>
+
+  - **assets**: Módulo referente à imagens;
+  - **components**: Módulo que comporta todos os componentes feitos no projeto utilizando o Boostrap;
+  - **core**: Módulo que possui arquivos e utilitarios essenciais para o funcionamento da aplicação;
+  - **domain-types**: Módulo referente a todos os tipos criados com o auxilio do Typescript;
+  - **meshes-components**: Módulo que comporta todos os modelos 3D base através da utilização do ThreeJS;
+  - **styles**: Módulo que comporta todas as estilizações de temas (claro e escuro) através do styled-components;
 
 ##
 

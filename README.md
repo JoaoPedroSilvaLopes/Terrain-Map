@@ -74,6 +74,7 @@ As tecnologias utilizadas no projetos foram
 - <a href="https://nx.dev/recipes/nx-console">NX Console</a>
 - <a href="https://www.typescriptlang.org">TypeScript</a>
 - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>
+- <a href="https://react.dev">React</a>
 - <a href="https://threejs.org">ThreeJS</a>
 - <a href="https://developers.google.com/maps?hl=pt-br">Google Maps API</a>
 - <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a>

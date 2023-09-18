@@ -1,5 +1,9 @@
 ## :pencil2: TerrainMap
 
+<p align="center">
+  <img width="1000" height="auto" src=".github/terrain-map.gif">
+</p>
+
 ## :file_folder: Sobre o projeto
 
 <p align="justify">

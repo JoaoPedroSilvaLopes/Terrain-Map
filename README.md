@@ -13,6 +13,50 @@
   Eles podem escolher diferentes tipos de visualização, ajustar nível detalhes e tipos de iluminação do terreno.
 </p>
 
+##
+
+### 🧊 Tipos de modelo
+
+<p align="justify">
+  Existem dois modos de modelo que o usuário pode escolher.
+</p>
+
+| Cúbico                                | Hexagonal                                |
+| ------------------------------------- | ---------------------------------------- |
+| ![image1](.github/terreno-cubico.png) | ![image2](.github/terreno-hexagonal.jpg) |
+
+### 🖼️ Nível de detalhe
+
+<p align="justify">
+  Existem três níveis de detalhe que o usuário pode escolher.
+</p>
+
+| Nível de detalhe Baixo                     | Nível de detalhe Médio                     | Nível de detalhe alto                     |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------|
+| ![image1](.github/nivel-detalhe-baixo.jpg) | ![image2](.github/nivel-detalhe-medio.jpg) | ![image3](.github/nivel-detalhe-alto.jpg) |
+
+### 🖼️ Tipos de visualização
+
+<p align="justify">
+  Existem três modos de visualização que o usuário pode escolher.
+</p>
+
+| Geográfico                                 | Mapas de alturas                              | Wireframe                                     |
+| ------------------------------------------ | --------------------------------------------- | --------------------------------------------- |
+| ![image1](.github/nivel-detalhe-baixo.jpg) | ![image2](.github/visualizacao-heightmap.jpg) | ![image3](.github/visualizacao-wireframe.jpg) |
+
+### 💡 Iluminação
+
+<p align="justify">
+  Existem três modos de iluminação que o usuário pode escolher.
+</p>
+
+| Sem iluminação                            | Com iluminação                        | Com iluminação + Sombras                  |
+| ----------------------------------------- | ------------------------------------- | ----------------------------------------- |
+| ![image1](.github/terreno-sem-sombra.png) | ![image2](.github/terreno-cubico.png) | ![image3](.github/terreno-com-sombra.jpg) |
+
+##
+
 ## :desktop_computer: Tecnologias
 
 As tecnologias utilizadas no projetos foram

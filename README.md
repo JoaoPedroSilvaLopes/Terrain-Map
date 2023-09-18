@@ -85,3 +85,6 @@ As tecnologias utilizadas no projetos foram
 ## :framed_picture: Design das telas
 
 - <a href="https://www.figma.com/file/TknTfh7qs9neG7AbgT4seG/Procedural-Render?node-id=0%3A1&t=ezZdxKeLdofJ4jm1-1" />Figma do Projeto</a>
+
+## Licença
+Projetos feitos por <a href="https://www.linkedin.com/in/joao-pedro-silva-lopes/">João Pedro</a>
